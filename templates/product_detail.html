@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section">
+    <div class="container product-detail-container">
+        <div class="detail-image fade-in-up">
+            <div class="wishlist-icon" data-slug="{{ product.slug }}"
+                style="top: 20px; right: 20px; width: 45px; height: 45px; font-size: 1.5rem;"><i
+                    class="far fa-heart"></i></div>
+            {% if product.discount_price %}
+            <span class="discount-badge"
+                style="top: 20px; right: 80px; font-size: 1rem; padding: 8px 15px;">Chegirmada</span>
+            {% endif %}
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+            <div class="no-image-product large"></div>
+            {% endif %}
+        </div>
+        <div class="detail-info fade-in-up delay-1">
+            <h1>{{ product.name }}</h1>
+            <p class="category-tag">{{ product.category.name }}</p>
+            {% if product.discount_price %}
+            <p class="price large-price">
+                <span style="text-decoration: line-through; color: #888; font-size: 0.6em;">${{ product.price }}</span>
+                <span style="color: #e53935;">${{ product.discount_price }}</span>
+            </p>
+            {% else %}
+            <p class="price large-price">${{ product.price }}</p>
+            {% endif %}
+            <p class="description">{{ product.description }}</p>
+
+            <div class="actions">
+                <button style="border: none;" class="btn btn-primary add-to-cart-btn"
+                    data-slug="{{ product.slug }}">Savatchaga qo'shish</button>
+                <button class="btn btn-secondary">Hoziroq sotib olish</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .product-detail-container {
+        display: flex;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .detail-image {
+        flex: 1;
+    }
+
+    .detail-image img {
+        width: 100%;
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+    }
+
+    .detail-info {
+        flex: 1;
+    }
+
+    .large-price {
+        font-size: 2rem;
+        color: var(--primary-blue);
+        margin: 1rem 0;
+    }
+
+    .description {
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
+
+    .actions {
+        display: flex;
+        gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .product-detail-container {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}

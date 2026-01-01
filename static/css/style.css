@@ -1,0 +1,538 @@
+/* Dark Mode Overrides */
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --nav-bg: #121212;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    --primary-blue: #2979ff;
+    /* Brighter blue for dark mode */
+    --secondary-blue: #1565c0;
+    --success-green: #4caf50;
+}
+
+/* Light Mode (Default) */
+:root {
+    --primary-blue: #0d47a1;
+    /* Deep Blue */
+    --secondary-blue: #1976d2;
+    --accent-color: #00e5ff;
+    --bg-color: #f8f9fa;
+    /* Light Background */
+    --text-color: #212529;
+    /* Dark Text */
+    --card-bg: #ffffff;
+    /* White Card */
+    --nav-bg: #ffffff;
+    /* White Nav */
+    --footer-bg: #1a1a1a;
+    --footer-text: #ffffff;
+    --transition-speed: 0.3s;
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --success-green: #4caf50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    overflow-x: hidden;
+}
+
+/* Navbar - Fixed Position */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: var(--nav-bg);
+    box-shadow: var(--shadow);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Add padding due to fixed nav */
+main {
+    padding-top: 80px;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--text-color);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-blue);
+}
+
+.nav-icons {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-icons a,
+.nav-icons button {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.nav-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #e53935;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--nav-bg);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.nav-badge.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.nav-icons a:hover,
+.nav-icons button:hover {
+    color: var(--primary-blue);
+}
+
+/* Atmosphere Global Container */
+.atmosphere-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.atmosphere-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--primary-blue);
+    opacity: 0.1;
+    filter: blur(60px);
+}
+
+/* Random circle classes */
+.circle-small {
+    width: 150px;
+    height: 150px;
+}
+
+.circle-medium {
+    width: 250px;
+    height: 250px;
+}
+
+.circle-large {
+    width: 400px;
+    height: 400px;
+}
+
+/* Sections */
+.section {
+    position: relative;
+    padding: 4rem 5%;
+    z-index: 1;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8rem 5% 4rem;
+    min-height: 90vh;
+    background: linear-gradient(135deg, rgba(13, 71, 161, 0.05) 0%, rgba(25, 118, 210, 0.1) 100%);
+    position: relative;
+}
+
+.hero-content {
+    max-width: 50%;
+    margin-right: 5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.hero-content .highlight {
+    color: var(--primary-blue);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+/* Button Styling Refinement */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-blue);
+    color: white;
+    box-shadow: 0 5px 15px rgba(13, 71, 161, 0.3);
+    /* Uses static blue in light mode, or var? var is correct */
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px);
+    background-color: var(--secondary-blue);
+    box-shadow: 0 15px 25px rgba(13, 71, 161, 0.5);
+}
+
+.btn-secondary {
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+    background: transparent;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-blue);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(13, 71, 161, 0.3);
+}
+
+/* Added State Class for "Savatga qo'shildi" */
+.add-to-cart-btn.added,
+.btn.added {
+    background-color: var(--success-green) !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3) !important;
+    pointer-events: none;
+}
+
+.add-to-cart-btn.added:hover,
+.btn.added:hover {
+    box-shadow: 0 15px 25px rgba(76, 175, 80, 0.5) !important;
+    transform: translateY(-3px);
+}
+
+/* Cards */
+.category-grid,
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.category-card,
+.product-card {
+    position: relative;
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+    text-align: center;
+    border: none;
+}
+
+.category-card:hover,
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    /* Lighter shadow for light mode default */
+}
+
+/* Dark mode shadow adjustment if needed is processed via vars, but explicit rgba might need override */
+[data-theme="dark"] .category-card:hover,
+[data-theme="dark"] .product-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.category-card img,
+.product-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.product-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #e53935;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+}
+
+.wishlist-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #e53935;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 11;
+    transition: transform 0.2s;
+}
+
+.wishlist-icon:hover {
+    transform: scale(1.1);
+}
+
+.wishlist-icon.liked {
+    background-color: #e53935;
+    color: white;
+}
+
+.product-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.add-to-cart-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 10px;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+    background-color: var(--primary-blue);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+    transform: translateY(-3px);
+    background-color: var(--secondary-blue);
+    box-shadow: 0 10px 20px rgba(13, 71, 161, 0.4);
+}
+
+/* Typography */
+.product-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-info .price {
+    font-size: 1.1rem;
+    color: var(--primary-blue);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    padding: 4rem 5% 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+    /* Note: Accent color in light mode is cyan, might need adjustment for visibility on light bg? No, footer bg is always dark */
+}
+
+/* Ensure Footer BG is consistent */
+footer {
+    background-color: #000000;
+    /* Force black footer even in light mode for styling preference */
+    color: white;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section a {
+    color: #bdbdbd;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #333;
+    padding-top: 2rem;
+    color: #888;
+}
+
+/* Forms */
+.form-control {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    /* Lighter border for light mode */
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-family: inherit;
+}
+
+[data-theme="dark"] .form-control {
+    border: 1px solid #333;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+}
+
+/* Animations */
+.fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+
+    .category-grid,
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+
+    .category-grid,
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 6rem;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        margin-right: 0;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .category-grid,
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}

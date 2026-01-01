@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Barcha Mahsulotlar</h2>
+        <div class="product-grid">
+            {% for product in products %}
+            <div class="product-card fade-in">
+                <div class="wishlist-icon"><i class="far fa-heart"></i></div>
+                {% if product.discount_price %}
+                <span class="discount-badge">Chegirmada</span>
+                {% endif %}
+
+                <a href="{% url 'product_detail' product.slug %}" class="product-card-link">
+                    <div class="product-image">
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                        <div class="no-image-product"></div>
+                        {% endif %}
+                    </div>
+                    <div class="product-info">
+                        <h3>{{ product.name }}</h3>
+                        {% if product.discount_price %}
+                        <p class="price">
+                            <span
+                                style="text-decoration: line-through; color: #888; font-size: 0.9em; margin-right: 5px;">${{ product.price }}</span>
+                            <span style="color: #e53935;">${{ product.price }}</span>
+                        </p>
+                        {% else %}
+                        <p class="price">${{ product.price }}</p>
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+            </a>
+            <button class="btn btn-primary add-to-cart-btn" data-slug="{{ product.slug }}">Savatchaga qo'shish</button>
+        </div>
+        {% empty %}
+        <p>Mahsulotlar topilmadi.</p>
+        {% endfor %}
+    </div>
+    </div>
+</section>
+{% endblock %}

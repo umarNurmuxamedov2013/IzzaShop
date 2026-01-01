@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Izza Shop - Premium E-commerce</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Small inline style for search bar, move to css later */
+        .search-form {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 2px 10px;
+            margin-right: 10px;
+        }
+
+        .search-form input {
+            border: none;
+            outline: none;
+            background: transparent;
+            color: inherit;
+        }
+
+        .search-form button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="{% url 'home' %}">Izza<span>Shop</span></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+                <li><a href="{% url 'home' %}#products">Mahsulotlar</a></li>
+                <li><a href="{% url 'home' %}#categories">Kategoriyalar</a></li>
+                <li><a href="{% url 'home' %}#contact">Aloqa</a></li>
+                <li><a href="{% url 'home' %}#about">Biz haqimizda</a></li>
+                <li><a href="{% url 'home' %}#discounts">Chegirmalar</a></li>
+            </ul>
+            <div class="nav-icons">
+                <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+                <form action="{% url 'search' %}" method="get" class="search-form">
+                    <input type="text" name="q" placeholder="Qidiruv...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <a href="{% url 'wishlist' %}" class="nav-icon wishlist-nav-link" title="Saralanganlar">
+                    <i class="far fa-heart"></i>
+                    <span class="nav-badge" id="wishlist-count">0</span>
+                </a>
+                <a href="{% url 'cart' %}" class="nav-icon" title="Savatcha">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="nav-badge" id="cart-count">0</span>
+                </a>
+                <a href="#"><i class="fas fa-user"></i></a>
+            </div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Izza Shop haqida</h3>
+                <p>Siz uchun sifatli mahsulotlar makoni.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Havolalar</h3>
+                <ul>
+                    <li><a href="#">Maxfiylik siyosati</a></li>
+                    <li><a href="#">Foydalanish shartlari</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Aloqa</h3>
+                <p>Email: info@izzashop.com</p>
+                <p>Tel: +998 90 123 45 67</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Izza Shop. Barcha huquqlar himoyalangan.
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

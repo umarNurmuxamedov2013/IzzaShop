@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Saralanganlar</h2>
+        <div id="wishlist-container" class="product-grid">
+            <!-- Wishlist items will be loaded here via JS or Backend. 
+                 Since we are using LocalStorage for "visual" interaction first, 
+                 we might need JS to fetch products or just show empty state if backend isn't synced.
+                 
+                 Plan: If backend session is used, render here. 
+                 For now, let's use the same structure as product list.
+            -->
+            {% for product in products %}
+            <div class="product-card fade-in">
+                <div class="wishlist-icon liked" data-slug="{{ product.slug }}"><i class="fas fa-heart"></i></div>
+                {% if product.discount_price %}
+                <span class="discount-badge">Chegirmada</span>
+                {% endif %}
+
+                <a href="{% url 'product_detail' product.slug %}" class="product-card-link">
+                    <div class="product-image">
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                        <div class="no-image-product"></div>
+                        {% endif %}
+                    </div>
+                    <div class="product-info">
+                        <h3>{{ product.name }}</h3>
+                        {% if product.discount_price %}
+                        <p class="price">
+                            <span
+                                style="text-decoration: line-through; color: #888; font-size: 0.9em; margin-right: 5px;">${{
+                                product.price }}</span>
+                            <span style="color: #e53935;">${{ product.discount_price }}</span>
+                        </p>
+                        {% else %}
+                        <p class="price">${{ product.price }}</p>
+                        {% endif %}
+                    </div>
+                </a>
+                <button class="btn btn-primary add-to-cart-btn" data-slug="{{ product.slug }}">Savatchaga
+                    qo'shish</button>
+            </div>
+            {% empty %}
+            <div class="empty-wishlist" style="grid-column: 1/-1; text-align: center;">
+                <p>Hozircha saralangan mahsulotlar yo'q.</p>
+                <a href="{% url 'shop' %}" class="btn btn-secondary" style="margin-top: 1rem;">Xaridni boshlash</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

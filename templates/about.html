@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Biz Haqimizda</h2>
+        <div class="about-content fade-in-up">
+            <div class="about-text">
+                <p><strong>Izza Shop</strong> O'zbekistondagi eng sifatli mahsulotlar do'koni. Biz 2026-yilda tashkil
+                    topganmiz va mijozlarimizga eng yaxshi xizmatni taklif qilamiz.</p>
+                <p>Bizning maqsadimiz - sifat va hamyonbop narxlarni birlashtirish. Har bir mijoz biz uchun qadrli.</p>
+                <br>
+                <h3>Nega bizni tanlashadi?</h3>
+                <ul>
+                    <li>Sifat kafolati</li>
+                    <li>Tezkor yetkazib berish</li>
+                    <li>24/7 Qo'llab-quvvatlash xizmati</li>
+                    <li>Ishonchli to'lov tizimlari</li>
+                </ul>
+            </div>
+            <div class="about-image">
+                <div class="image-placeholder">Izza Shop Jamoasi</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .about-content {
+        display: flex;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .about-text {
+        flex: 1;
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    .about-image {
+        flex: 1;
+        height: 300px;
+        background: var(--card-bg);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow);
+    }
+
+    .about-text ul {
+        list-style: none;
+        margin-top: 1rem;
+    }
+
+    .about-text ul li {
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .about-text ul li::before {
+        content: '\2713';
+        color: var(--primary-blue);
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        .about-content {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}

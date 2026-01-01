@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="atmosphere-container">
+        <div class="atmosphere-circle circle-large" style="top: -10%; right: -10%;"></div>
+        <div class="atmosphere-circle circle-small" style="bottom: 20%; left: 10%;"></div>
+    </div>
+    <div class="hero-content fade-in-up">
+        <h1><span class="highlight">Izza Shop</span>ga xush kelibsiz</h1>
+        <p>Eng sifatli mahsulotlarni biz bilan kashf eting.</p>
+        <a href="#products" class="btn btn-primary">Xarid qilish</a>
+    </div>
+    <div class="hero-image fade-in-up delay-1">
+        <img src="https://i1.photo.2gis.com/images/branch/0/30258560134617060_2189.jpg" alt="Shopping" width="550"
+            id="hero-img-placeholder">
+    </div>
+</section>
+
+<!-- Products Section (Atmosphere Added) -->
+<section id="products" class="section">
+    <div class="atmosphere-container">
+        <!-- Random Small Circles -->
+        <div class="atmosphere-circle circle-small" style="top: 10%; left: 5%;"></div>
+        <div class="atmosphere-circle circle-medium" style="bottom: 20%; right: 10%;"></div>
+        <div class="atmosphere-circle circle-small" style="top: 40%; left: 80%;"></div>
+        <div class="atmosphere-circle circle-large" style="bottom: -10%; left: 30%;"></div>
+        <div class="atmosphere-circle circle-small" style="top: 70%; left: 15%;"></div>
+    </div>
+    <div class="container">
+        <h2 class="section-title">Mahsulotlar</h2>
+        <div class="product-grid">
+            {% for product in products %}
+            <div class="product-card fade-in">
+                <div class="wishlist-icon" data-slug="{{ product.slug }}"><i class="far fa-heart"></i></div>
+                {% if product.discount_price %}
+                <span class="discount-badge">Chegirmada</span>
+                {% endif %}
+
+                <a href="{% url 'product_detail' product.slug %}" class="product-card-link">
+                    <div class="product-image">
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                        <div class="no-image-product"></div>
+                        {% endif %}
+                    </div>
+                    <div class="product-info">
+                        <h3>{{ product.name }}</h3>
+                        {% if product.discount_price %}
+                        <p class="price">
+                            <span
+                                style="text-decoration: line-through; color: #888; font-size: 0.9rem; margin-right: 5px;">${{
+                                product.price }}</span>
+                            <span style="color: #e53935;">${{ product.discount_price }}</span>
+                        </p>
+                        {% else %}
+                        <p class="price">${{ product.price }}</p>
+                        {% endif %}
+                    </div>
+                </a>
+                <button class="btn btn-primary add-to-cart-btn" data-slug="{{ product.slug }}">Savatchaga
+                    qo'shish</button>
+            </div>
+            {% empty %}
+            <p>Mahsulotlar mavjud emas.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section id="categories" class="section">
+    <div class="atmosphere-container">
+        <div class="atmosphere-circle circle-medium" style="top: 10%; left: -5%;"></div>
+        <div class="atmosphere-circle circle-small" style="bottom: 10%; right: 5%;"></div>
+        <div class="atmosphere-circle circle-small" style="top: 50%; right: 40%;"></div>
+    </div>
+    <div class="container">
+        <h2 class="section-title">Kategoriyalar</h2>
+        <div class="category-grid">
+            {% for category in categories %}
+            <div class="category-card" onclick="location.href='{% url 'product_by_category' category.slug %}'"
+                style="cursor: pointer;">
+                {% if category.image %}
+                <img src="{{ category.image.url }}" alt="{{ category.name }}">
+                {% else %}
+                <div class="no-image">No Image</div>
+                {% endif %}
+                <h3>{{ category.name }}</h3>
+            </div>
+            {% empty %}
+            <p>Kategoriyalar mavjud emas.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section (Atmosphere Added) -->
+<section id="contact" class="section">
+    <div class="atmosphere-container">
+        <div class="atmosphere-circle circle-2"></div>
+    </div>
+    <div class="container contact-container" style="max-width: 900px;">
+        <h2 class="section-title">Biz bilan bog'lanish</h2>
+        <div class="contact-content" style="display: flex; gap: 4rem; flex-wrap: wrap;">
+            <div class="contact-info fade-in-up" style="flex: 1; min-width: 300px;">
+                <h3>Ma'lumotlarimiz</h3>
+                <p>Savollaringiz bormi? Bizga murojaat qiling.</p>
+                <div class="info-item"
+                    style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; font-size: 1.1rem;">
+                    <i class="fas fa-map-marker-alt" style="color: var(--primary-blue);"></i>
+                    <p>123 Izza Ko'chasi, Toshkent, O'zbekiston</p>
+                </div>
+                <div class="info-item"
+                    style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; font-size: 1.1rem;">
+                    <i class="fas fa-phone" style="color: var(--primary-blue);"></i>
+                    <p>+998 90 123 45 67</p>
+                </div>
+                <div class="info-item"
+                    style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; font-size: 1.1rem;">
+                    <i class="fas fa-envelope" style="color: var(--primary-blue);"></i>
+                    <p>info@izzashop.com</p>
+                </div>
+            </div>
+            <div class="contact-form-wrapper fade-in-up delay-1" style="flex: 1; min-width: 300px;">
+                <form class="contact-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label>Ismingiz</label>
+                        <input type="text" placeholder="Ismingizni kiriting" required class="form-control">
+                    </div>
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label>Email</label>
+                        <input type="email" placeholder="Email manzilingiz" required class="form-control">
+                    </div>
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label>Xabar</label>
+                        <textarea rows="5" placeholder="Xabaringizni yozing" required class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Xabar yuborish</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section">
+    <div class="atmosphere-container">
+        <div class="atmosphere-circle circle-large" style="bottom: -20%; left: -10%;"></div>
+        <div class="atmosphere-circle circle-small" style="top: 20%; right: 10%;"></div>
+    </div>
+    <div class="container">
+        <h2 class="section-title">Biz Haqimizda</h2>
+        <div class="about-content fade-in-up" style="display: flex; gap: 4rem; align-items: center;">
+            <div class="about-text" style="flex: 1; font-size: 1.1rem; line-height: 1.8;">
+                <p><strong>Izza Shop</strong> O'zbekistondagi eng sifatli mahsulotlar do'koni. Biz 2026-yilda tashkil
+                    topganmiz va mijozlarimizga eng yaxshi xizmatni taklif qilamiz.</p>
+                <p>Bizning maqsadimiz - sifat va hamyonbop narxlarni birlashtirish. Har bir mijoz biz uchun qadrli.</p>
+                <br>
+                <h3>Nega bizni tanlashadi?</h3>
+                <ul style="list-style: none; margin-top: 1rem;">
+                    <li style="margin-bottom: 0.5rem;"><span
+                            style="color: var(--primary-blue); margin-right: 10px;">&#10003;</span> Sifat kafolati</li>
+                    <li style="margin-bottom: 0.5rem;"><span
+                            style="color: var(--primary-blue); margin-right: 10px;">&#10003;</span> Tezkor yetkazib
+                        berish</li>
+                    <li style="margin-bottom: 0.5rem;"><span
+                            style="color: var(--primary-blue); margin-right: 10px;">&#10003;</span> 24/7
+                        Qo'llab-quvvatlash</li>
+                    <li style="margin-bottom: 0.5rem;"><span
+                            style="color: var(--primary-blue); margin-right: 10px;">&#10003;</span> Ishonchli to'lov
+                    </li>
+                </ul>
+            </div>
+            <div class="about-image"
+                style="flex: 1; height: 300px; background: var(--card-bg); border-radius: 15px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow);">
+                <div class="image-placeholder">Izza Shop Jamoasi</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Chegirmalar Section -->
+<section id="discounts" class="section">
+    <div class="atmosphere-container">
+        <div class="atmosphere-circle circle-medium" style="top: -10%; right: 20%;"></div>
+        <div class="atmosphere-circle circle-small" style="bottom: 30%; left: 5%;"></div>
+        <div class="atmosphere-circle circle-small" style="top: 60%; right: 5%;"></div>
+    </div>
+    <div class="container">
+        <h2 class="section-title">Maxsus Chegirmalar</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">Shoshiling, chegirmalar vaqti chegaralangan!</p>
+        <div class="product-grid">
+            {% for product in discount_products %}
+            <div class="product-card fade-in">
+                <div class="wishlist-icon" data-slug="{{ product.slug }}"><i class="far fa-heart"></i></div>
+                <span class="discount-badge">Chegirmada</span>
+
+                <a href="{% url 'product_detail' product.slug %}" class="product-card-link">
+                    <div class="product-image">
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                        <div class="no-image-product"></div>
+                        {% endif %}
+                    </div>
+                    <div class="product-info">
+                        <h3>{{ product.name }}</h3>
+                        <div class="price-container">
+                            <span class="old-price"
+                                style="text-decoration: line-through; color: #888; font-size: 0.9rem;">${{ product.price
+                                }}</span>
+                            <span class="price" style="color: #e53935; font-weight: bold; margin-left: 10px;">${{
+                                product.discount_price }}</span>
+                        </div>
+                    </div>
+                </a>
+                <button class="btn btn-primary add-to-cart-btn" data-slug="{{ product.slug }}">Savatchaga
+                    qo'shish</button>
+            </div>
+            {% empty %}
+            <p style="text-align: center; grid-column: 1/-1;">Hozircha chegirmalar yo'q.</p>
+            {% endfor %}
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="{% url 'discounts' %}" class="btn btn-secondary">Barcha chegirmalarni ko'rish</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
